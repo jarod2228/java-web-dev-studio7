@@ -14,6 +14,8 @@ public abstract class BaseDisc {
         name = aName;
         storageCapacity = aStorageCapacity;
         discType = aDiscType;
+        capacityUsed = checkCapacity(aCapacityUsed);
+        remainingCapacity = spaceLeft();
 
     }
 
@@ -22,10 +24,26 @@ public abstract class BaseDisc {
             return storageCapacity;
         }
         return dataWritten;
+    }
 
         private int spaceLeft() {
             return storageCapacity - capacityUsed;
+    }
+    public String discInfo() {
+        String output = String.format("\nDisc name: %s\nMax capacity: %d" +
+                "\nSpace used: %d" +
+                "\nAvailable space: %d\n", name, storageCapacity, capacityUsed, remainingCapacity);
+
+        return output;
+    }
+    public String writeData(int dataSize) {
+        if(dataSize > remainingCapacity) {
+            return "Not enough disc enough";
         }
+        capacityUsed += dataSize;
+        remainingCapacity -= dataSize;
+
+        return "data written to disc. Remaining space = " + remainingCapacity;
     }
 }
 

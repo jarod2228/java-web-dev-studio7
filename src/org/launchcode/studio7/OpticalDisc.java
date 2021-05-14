@@ -1,6 +1,6 @@
 package org.launchcode.studio7;
 
-public interface OpticalDisk {
+public interface OpticalDisc {
 
     void spinDisc();
     void readData();
